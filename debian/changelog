@@ -1,8 +1,0 @@
-ros-noetic-bosch-locator-bridge (1.0.0-1buster) buster; urgency=high
-
-  * initial version
-  * Contributors: Stefan Laible
-
- -- Stefan Laible <stefan.laible@de.bosch.com>  Sun, 16 May 2021 22:00:00 -0000
-
-
