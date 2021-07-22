@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>bosch_locator_bridge</name>
-  <version>1.0.1</version>
-  <description>The bosch_locator_bridge package</description>
+  <version>1.0.2</version>
+  <description>ROS interface to Rexroth ROKIT Locator</description>
 
   <maintainer email="stefan.laible@de.bosch.com">Stefan Laible</maintainer>
 
