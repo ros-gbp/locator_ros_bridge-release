@@ -3,16 +3,16 @@ project(bosch_locator_bridge)
 
 find_package(catkin REQUIRED COMPONENTS
     geometry_msgs
-        message_generation
-        nav_msgs
-        pcl_conversions
-        roscpp
-        sensor_msgs
-        std_msgs
-        std_srvs
-        tf2
-        tf2_geometry_msgs
-        tf2_ros
+    message_generation
+    nav_msgs
+    pcl_conversions
+    roscpp
+    sensor_msgs
+    std_msgs
+    std_srvs
+    tf2
+    tf2_geometry_msgs
+    tf2_ros
 )
 
 find_package(Poco REQUIRED COMPONENTS Foundation Net JSON)
@@ -40,11 +40,14 @@ add_message_files(
 
 add_service_files(
   FILES
+    ClientConfigGetEntry.srv
     ClientMapList.srv
     ClientMapSend.srv
     ClientMapSet.srv
     ClientMapStart.srv
     StartRecording.srv
+    ServerMapGetImageWithResolution.srv
+    ServerMapList.srv
 )
 
 generate_messages(
@@ -91,9 +94,28 @@ target_link_libraries(${PROJECT_NAME}_node
   Poco::Net
 )
 
+add_executable(${PROJECT_NAME}_server_node
+  src/locator_rpc_interface.cpp
+  src/rosmsgs_datagram_converter.cpp
+  src/server/server_bridge_node.cpp
+  src/server/server_main.cpp)
+set_target_properties(${PROJECT_NAME}_server_node PROPERTIES OUTPUT_NAME server_node PREFIX "")
+add_dependencies(${PROJECT_NAME}_server_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(${PROJECT_NAME}_server_node
+  ${catkin_LIBRARIES}
+  Poco::Foundation
+  Poco::JSON
+  Poco::Net
+)
+
 install(TARGETS ${PROJECT_NAME}_node
         RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+install(TARGETS ${PROJECT_NAME}_server_node
+        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 install(FILES config/locator_bridge_localization.rviz config/locator_bridge_map_creation.rviz config/locator_bridge_visual_recording.rviz
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config
 )
