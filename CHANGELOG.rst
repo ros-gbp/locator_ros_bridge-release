@@ -2,6 +2,12 @@
 Changelog for package bosch_locator_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.5 (2022-02-15)
+------------------
+* update to ROKIT Locator version 1.4
+* add interface for second laser
+* Contributors: Stefan Laible
+
 1.0.4 (2022-01-24)
 ------------------
 * handle NaNs in range values
