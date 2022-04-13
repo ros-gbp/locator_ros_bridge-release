@@ -1,3 +1,26 @@
+## locator_ros_bridge (noetic) - 1.0.6-1
+
+The packages in the `locator_ros_bridge` repository were released into the `noetic` distro by running `/usr/bin/bloom-release locator_ros_bridge --rosdistro noetic` on `Wed, 13 Apr 2022 06:26:50 -0000`
+
+The `bosch_locator_bridge` package was released.
+
+Version of package(s) in repository `locator_ros_bridge`:
+
+- upstream repository: https://github.com/boschglobal/locator_ros_bridge.git
+- release repository: https://github.com/ros-gbp/locator_ros_bridge-release.git
+- rosdistro version: `1.0.5-1`
+- old version: `1.0.5-1`
+- new version: `1.0.6-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.7`
+- catkin_pkg version: `0.4.24`
+- rosdep version: `0.21.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## locator_ros_bridge (noetic) - 1.0.5-1
 
 The packages in the `locator_ros_bridge` repository were released into the `noetic` distro by running `/usr/bin/bloom-release locator_ros_bridge --rosdistro noetic` on `Tue, 15 Feb 2022 15:20:18 -0000`
