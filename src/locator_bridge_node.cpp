@@ -27,7 +27,7 @@
 /// locator module versions to check against. Format is name, { major_version, minor_version }
 const static std::unordered_map<std::string, std::pair<int32_t, int32_t>> REQUIRED_MODULE_VERSIONS({
     { "AboutModules", { 5, 0 } },
-    { "Session", { 3, 1 } },
+    { "Session", { 3, 0 } },
     { "Diagnostic", { 4, 0 } },
     { "Licensing", { 6, 0 } },
     { "Config", { 5, 0 } },
@@ -38,7 +38,7 @@ const static std::unordered_map<std::string, std::pair<int32_t, int32_t>> REQUIR
     { "ClientControl", { 3, 1 } },
     { "ClientRecording", { 3, 2 } },
     { "ClientMap", { 3, 3 } },
-    { "ClientLocalization", { 5, 0 } },
+    { "ClientLocalization", { 5, 1 } },
     { "ClientManualAlign", { 4, 1 } },
     { "ClientGlobalAlign", { 4, 0 } },
     { "ClientLaserMask", { 5, 0 } },
@@ -378,7 +378,7 @@ void LocatorBridgeNode::syncConfig()
   {
     const auto& key = iter.first;
     auto& value = iter.second;
-    if (!localization_client_rosconfig.hasMember(key))
+    if (!loc_client_config.contains(key))
     {
       ROS_WARN_STREAM("invalid locator rosparam found: " << key << ", " << value);
       continue;
