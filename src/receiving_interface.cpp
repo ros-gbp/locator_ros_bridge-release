@@ -54,8 +54,15 @@ void ReceivingInterface::onReadEvent(const Poco::AutoPtr<Poco::Net::ReadableNoti
     else
     {
       datagram_buffer_.insert(datagram_buffer_.end(), msg.begin(), msg.end());
-      const auto bytes_to_delete = tryToParseData(datagram_buffer_);
-      datagram_buffer_.erase(datagram_buffer_.begin(), datagram_buffer_.begin() + bytes_to_delete);
+
+      size_t bytes_to_delete = 0;
+      // Try to parse messages from the buffer until tryToParseData fails to parse a full message
+      do {
+        bytes_to_delete = tryToParseData(datagram_buffer_);
+        datagram_buffer_.erase(
+          datagram_buffer_.begin(),
+          datagram_buffer_.begin() + bytes_to_delete);
+      } while (bytes_to_delete > 0);
     }
   }
   catch (const std::ios_base::failure& io_failure)
@@ -72,23 +79,6 @@ void ReceivingInterface::onReadEvent(const Poco::AutoPtr<Poco::Net::ReadableNoti
 void ReceivingInterface::run()
 {
   reactor_.run();
-}
-
-void ReceivingInterface::publishTransform(const geometry_msgs::PoseStamped& pose, const std::string& parent_frame,
-                                          const std::string child_frame)
-{
-  geometry_msgs::TransformStamped transform;
-  transform.header.stamp = pose.header.stamp;
-  transform.header.frame_id = parent_frame;
-
-  transform.transform.translation.x = pose.pose.position.x;
-  transform.transform.translation.y = pose.pose.position.y;
-  transform.transform.translation.z = pose.pose.position.z;
-  transform.transform.rotation = pose.pose.orientation;
-
-  transform.child_frame_id = child_frame;
-
-  tf_broadcaster_.sendTransform(transform);
 }
 
 ClientControlModeInterface::ClientControlModeInterface(const Poco::Net::IPAddress& hostadress, ros::NodeHandle& nh)
@@ -157,7 +147,6 @@ size_t ClientMapVisualizationInterface::tryToParseData(const std::vector<char>& 
   if (bytes_parsed > 0)
   {
     // publish
-    publishTransform(pose, MAP_FRAME_ID, LASER_FRAME_ID);
     publishers_[0].publish(client_map_visualization);
     publishers_[1].publish(pose);
     publishers_[2].publish(scan);
@@ -212,7 +201,6 @@ size_t ClientRecordingVisualizationInterface::tryToParseData(const std::vector<c
   if (parsed_bytes > 0)
   {
     // publish
-    publishTransform(pose, MAP_FRAME_ID, LASER_FRAME_ID);
     publishers_[0].publish(client_recording_visualization);
     publishers_[1].publish(pose);
     publishers_[2].publish(scan);
@@ -310,7 +298,6 @@ size_t ClientLocalizationPoseInterface::tryToParseData(const std::vector<char>& 
   if (bytes_parsed > 0)
   {
     // publish
-    publishTransform(pose, MAP_FRAME_ID, LASER_FRAME_ID);
     publishers_[0].publish(client_localization_pose);
     publishers_[1].publish(poseWithCov);
     publishers_[2].publish(lidar_odo_pose);
