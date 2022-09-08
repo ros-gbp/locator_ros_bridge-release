@@ -20,7 +20,7 @@ jobs:
         ros_distribution: [ noetic ]
     steps:
     - uses: actions/checkout@v2
-    - uses: ros-tooling/setup-ros@v0.2
+    - uses: ros-tooling/setup-ros@v0.3
       with:
         required-ros-distributions: ${{ matrix.ros_distribution }}
     - uses : ros-tooling/action-ros-ci@v0.2
@@ -28,5 +28,10 @@ jobs:
         package-name: bosch_locator_bridge
         vcs-repo-file-url: ''
         target-ros1-distro: ${{ matrix.ros_distribution }}
-        colcon-mixin-name: coverage-gcc
+        colcon-defaults: |
+          {
+            "build": {
+              "mixin": ["coverage-gcc"]
+            }
+          }        
         colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
