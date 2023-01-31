@@ -35,7 +35,7 @@ const static std::unordered_map<std::string, std::pair<int32_t, int32_t>>
         {"AboutBuild", {3, 0}},
         {"Certificate", {3, 0}},
         {"System", {3, 1}},
-        {"ServerMap", {5, 0}},
+        {"ServerMap", {6, 0}},
         {"ServerUser", {4, 0}},
         {"ServerInternal", {2, 0}},
     });
@@ -104,7 +104,42 @@ void ServerBridgeNode::syncConfig() {
     case XmlRpc::XmlRpcValue::TypeString:
       server_config[key] = static_cast<std::string>(value);
       break;
-    // TODO: add missing parameters
+    case XmlRpc::XmlRpcValue::TypeArray:
+      if (value.size() == 0)
+      {
+        // for an empty array the type does not matter here, we arbitrarily choose double
+        server_config[key] = convert_value_array_to_vector<double>(value);
+      }
+      else
+      {
+        switch (value[0].getType())
+        {
+          case XmlRpc::XmlRpcValue::TypeBoolean:
+          {
+            server_config[key] = convert_value_array_to_vector<bool>(value);
+            break;
+          }
+          case XmlRpc::XmlRpcValue::TypeInt:
+          {
+            server_config[key] = convert_value_array_to_vector<int>(value);
+            break;
+          }
+          case XmlRpc::XmlRpcValue::TypeDouble:
+          {
+            server_config[key] = convert_value_array_to_vector<double>(value);
+            break;
+          }
+          case XmlRpc::XmlRpcValue::TypeString:
+          {
+            server_config[key] = convert_value_array_to_vector<std::string>(value);
+            break;
+          }
+          default:
+            ROS_ERROR_STREAM("unknown element type for " << key);
+            break;
+        }
+      }
+      break;
     default:
       ROS_ERROR_STREAM("unknown config type for " << key);
       break;
