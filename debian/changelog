@@ -1,0 +1,118 @@
+ros-noetic-bosch-locator-bridge (1.0.11-1focal) focal; urgency=high
+
+  * made server compatible with Locator version 1.9 (#60 <https://github.com/boschglobal/locator_ros_bridge/issues/60>)
+  * compatible with 1.9 and ubuntu22 (#59 <https://github.com/boschglobal/locator_ros_bridge/issues/59>)
+  * Fix msg operator
+  * Make minRange non-negative (#54 <https://github.com/boschglobal/locator_ros_bridge/issues/54>)
+  * Update server_bridge_node.cpp (#52 <https://github.com/boschglobal/locator_ros_bridge/issues/52>)
+    made compatible with Locator version 1.8
+    Co-authored-by: TAN Hongkui <mailto:tanhongkui@qq.com>
+  * Merge pull request #47 <https://github.com/boschglobal/locator_ros_bridge/issues/47> from boschglobal/update-doc-humble
+    Update doc humble
+  * correct version in changelog
+  * Contributors: Fabian König, Sheung Ying Yuen-Wille, Stefan Laible
+  * Update doc humble (#47 <https://github.com/boschglobal/locator_ros_bridge/issues/47>)
+  * correct version in changelog
+  * Contributors: Fabian König, Sheung Ying Yuen-Wille, Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Mon, 03 Jun 2024 22:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.10-1focal) focal; urgency=high
+
+  * Update to ROKIT Locator version 1.8
+  * Document the map expansion workflow
+  * Add rviz config files for map expansion
+  * Add services and interfaces for map expansion
+  * Add expandmap_state in control mode
+  * Remove field distanceToLastLC in ClientLocalizationVisualizationDatagram
+  * Introduce parameter odometry_velocity_set of odometry message
+  * Configurable Locator ports
+  * Contributors: Sheung Ying Yuen-Wille
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Thu, 19 Oct 2023 22:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.9-1focal) focal; urgency=high
+
+  * Try to stop everything before setting config list (#38 <https://github.com/boschglobal/locator_ros_bridge/issues/38>)
+  * Add errorFlags and infoFlags fields to ClientLocalizationPose (#32 <https://github.com/boschglobal/locator_ros_bridge/issues/32>)
+  * Update to ROKIT Locator version 1.6
+  * Contributors: Sheung Ying Yuen-Wille, Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Mon, 20 Mar 2023 23:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.8-1focal) focal; urgency=high
+
+  * Support arrays in config for server node
+  * Update module versions in server node
+  * Use mutex to just make one json_rpc_call at a time
+  * Contributors: Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Sun, 29 Jan 2023 23:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.7-1focal) focal; urgency=high
+
+  * Fixed a bug that could cause latency in localization poses
+  * Remove tf broadcaster
+  * Support arrays in config
+  * Check if laser scan message is valid
+  * Update to ROKIT Locator version 1.5
+  * Contributors: Fabian König, Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Wed, 07 Sep 2022 22:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.6-1focal) focal; urgency=high
+
+  * Fix check of locator config params
+  * Change version numbers for compatibility with v1.4.0
+  * Add parameters for using intensities
+  * Contributors: Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Tue, 12 Apr 2022 22:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.5-1focal) focal; urgency=high
+
+  * update to ROKIT Locator version 1.4
+  * add interface for second laser
+  * Contributors: Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Mon, 14 Feb 2022 23:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.4-1focal) focal; urgency=high
+
+  * handle NaNs in range values
+  * add service for getting config entries
+  * add server interface
+  * Contributors: Stefan Laible, robertwil
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Sun, 23 Jan 2022 23:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.3-1focal) focal; urgency=high
+
+  * update to ROKIT Locator version 1.3
+  * Contributors: Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Wed, 01 Sep 2021 22:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.2-1focal) focal; urgency=high
+
+  * guarantee that duration_rotate is greater zero
+  * Contributors: Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Wed, 21 Jul 2021 22:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.1-1focal) focal; urgency=high
+
+  * bump minimum cmake version
+  * add poco dependency
+  * Contributors: Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Wed, 19 May 2021 22:00:00 -0000
+
+ros-noetic-bosch-locator-bridge (1.0.0-1focal) focal; urgency=high
+
+  * initial version
+  * Contributors: Stefan Laible
+
+ -- Stefan Laible <stefan.laible@de.bosch.com>  Sun, 16 May 2021 22:00:00 -0000
+
+
